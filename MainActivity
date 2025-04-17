@@ -1,0 +1,79 @@
+package com.example.lab2
+
+
+fun main()
+{
+    val days = mutableListOf<Int>()
+    val temperatureList = mutableListOf<Double>()
+    val mdays = mutableListOf<Int>()
+    println("Введіть кількість днів: ")
+    var numberOfDays = readln().toIntOrNull() ?:0
+    if(numberOfDays<2 && numberOfDays>0)
+    {
+        println("Помилка: для аналізування потрібно ввести не менше ніж 2 дні!")
+    }
+    else if(numberOfDays==0)
+    {
+        println("Помилка: Введені некоректні дані!")
+    }
+    else if(numberOfDays<0)
+    {
+        println("Помилка: Введене відʼємне число!")
+    }
+    else
+    {
+        var dayCount = 1
+        while (numberOfDays!=0)
+        {
+            println("Введіть температуру для $dayCount дня:")
+            val temperatureOfTheDay = readln().toDoubleOrNull()
+            if(temperatureOfTheDay==null)
+            {
+                println("Помилка: Введені некоректні дані!")
+            }
+            else if(temperatureOfTheDay>=-60&&temperatureOfTheDay<=60)
+            {
+                temperatureList.add(temperatureOfTheDay)
+                if(temperatureOfTheDay<0)
+                {
+                    mdays.add(1)
+                }
+                dayCount++
+                numberOfDays--
+            }
+            else
+            {
+                try
+                {
+                    throw TemperatureOutOfRangeException (temperatureOfTheDay)
+                }
+                catch (e: NumberFormatException)
+                {
+                    println("Введено не число!")
+                }
+                catch (e: TemperatureOutOfRangeException)
+                {
+                    println(e.message)
+                }
+
+            }
+        }
+    }
+    val averageTemperature = temperatureList.average().toDouble()
+    val mdayNumber = mdays.size
+    val mxtemperature = temperatureList.maxOrNull() ?:0
+    val mntemperature = temperatureList.minOrNull() ?:0
+    println("Середня температура: $averageTemperature")
+    println("Кількість днів з морозом: $mdayNumber")
+    println("Максимальна температура: $mxtemperature")
+    println("Мінімальна температура: $mntemperature")
+    val result = when
+    {
+        averageTemperature < 0 -> "Холодно"
+        averageTemperature >0&& averageTemperature<=20 -> "Нормально"
+        else -> "Тепло"
+    }
+    println("Оцінка температури: $result")
+
+}
+class TemperatureOutOfRangeException(temperatureOfTheDay: Double): Exception("Температура перевищує ліміти!")
