@@ -1,0 +1,49 @@
+package com.example.lab2
+
+//11. Порахувати кількість парних чисел у масиві.
+
+fun main()
+{
+    println("Введіть кількість чисел для масиву: ")
+    var numberOfElements = readln().toIntOrNull()
+    var counter = 1
+    val list1 = mutableListOf<Int>()
+    if(numberOfElements==null)
+    {
+        println("Введене некоректне значення!")
+    }
+    else
+    {
+        while (numberOfElements!=0)
+        {
+            println("Введіть значення для елементу: $counter")
+            val number = readln().toIntOrNull()
+            if(number==null)
+            {
+                println("Введені некоректні дані!")
+            }
+            else
+            {
+                list1.add(number)
+                counter++
+                numberOfElements--
+            }
+
+        }
+        var evenNumbers = 0
+        var listCounter =0
+        while (listCounter<list1.size)
+        {
+            if (list1.elementAt(listCounter) % 2 == 0)
+            {
+                evenNumbers++
+                listCounter++
+            }
+            else
+            {
+                listCounter++
+            }
+        }
+        println("Кількість цілих чисел у масиві: $evenNumbers")
+    }
+}
