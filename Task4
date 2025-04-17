@@ -1,0 +1,12 @@
+package com.example.lab2
+
+//22. Прийняти ім’я користувача (String?)
+//Вивести "Привіт, [ім’я]", або "Привіт, Anonymous" якщо null/порожнє.
+
+fun main()
+{
+   println("Введіть своє імʼя: ")
+    val name = readln().ifEmpty { null }
+    val safeName = name ?: "Anonymous"
+    println("Привіт, $safeName!")
+}
