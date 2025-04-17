@@ -1,0 +1,22 @@
+package com.example.lab2
+
+//2. Перевірити, чи вік користувача ≥ 18 (доступ до сайту).
+
+    fun main()
+    {
+        println("Введіть ваш вік: ")
+        val age = readln().toIntOrNull()?:0
+
+        if(age>=18)
+        {
+            println("Доступ надано!")
+        }
+        else if(age<18 && age>0)
+        {
+            println("Для доступу вам має бути не менше 18 років!")
+        }
+        else
+        {
+            println("Введена некоректна інформація!")
+        }
+    }
