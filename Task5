@@ -1,0 +1,26 @@
+package com.example.lab2
+
+//27. Прочитати ціле число з консолі — з перевіркою NumberFormatException.
+
+fun main()
+{
+    println("Введіть ціле число: ")
+    val number = readln().toIntOrNull()
+    if(number==null)
+    {
+        try
+        {
+            throw NumberFormatException(number)
+        }
+        catch (e:NumberFormatException)
+        {
+            println("Помилка: Введено неціле число!")
+        }
+
+    }
+    else
+    {
+        println("Ваше число: $number")
+    }
+
+}
