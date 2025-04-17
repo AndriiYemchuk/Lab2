@@ -1,0 +1,42 @@
+package com.example.lab2
+
+//17. Знайти середнє значення елементів масиву.
+
+fun main()
+{
+   println("Введіть кількість чисел для масиву: ")
+    var numberOfElements = readln().toIntOrNull()
+    var counter = 1
+    val List1 = mutableListOf<Int>()
+    if(numberOfElements==null)
+    {
+        println("Введене некоректне значення!")
+    }
+    else if(numberOfElements<2)
+    {
+        println("Кількість елементів має бути більше ніж 1!")
+    }
+    else
+    {
+        while (numberOfElements!=0)
+        {
+            println("Введіть значення для елементу: $counter")
+            val number = readln().toIntOrNull()
+            if(number==null)
+            {
+                println("Введені некоректні дані!")
+            }
+            else
+            {
+                List1.add(number)
+                counter++
+                numberOfElements--
+            }
+
+        }
+        val averageNum = List1.average().toDouble()
+        println("Середнє значення масиву: $averageNum")
+    }
+
+
+}
